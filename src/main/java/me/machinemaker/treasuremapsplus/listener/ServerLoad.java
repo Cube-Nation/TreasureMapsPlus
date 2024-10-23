@@ -19,11 +19,8 @@
  */
 package me.machinemaker.treasuremapsplus.listener;
 
-import me.machinemaker.treasuremapsplus.DatapackOverride;
 import me.machinemaker.treasuremapsplus.TreasureMapsPlus;
-import me.machinemaker.treasuremapsplus.loot.ExplorationMapItemFunctionOverride;
 import me.machinemaker.treasuremapsplus.villager.VillagerTradeOverride;
-import net.minecraft.server.MinecraftServer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
@@ -40,13 +37,9 @@ public class ServerLoad implements Listener {
     public void onEvent(final ServerLoadEvent event) {
         if (event.getType() == ServerLoadEvent.LoadType.STARTUP) {
             try {
-                final ExplorationMapItemFunctionOverride mapFunctionOverride = new ExplorationMapItemFunctionOverride(MinecraftServer.getServer().registryAccess(), this.plugin);
-                mapFunctionOverride.override();
                 this.plugin.getSLF4JLogger().info("Reloading the server resources to apply treasure map changes...");
-                DatapackOverride.deleteLeftoversAndReload();
                 final VillagerTradeOverride villagerTradeOverride = new VillagerTradeOverride(this.plugin);
                 final int replacedTrades = villagerTradeOverride.override();
-                this.plugin.getSLF4JLogger().info("Found and replaced {} loot tables with a treasure map", mapFunctionOverride.replaceCount());
                 this.plugin.getSLF4JLogger().info("Found and replaced {} villager trades with a treasure map", replacedTrades);
             } catch (final Exception ex) {
                 throw new RuntimeException("Could not load this plugin", ex);

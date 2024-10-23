@@ -4,18 +4,10 @@ version: 1
 metrics: true
 
 replace:
-  # Replace buried treasure maps in vanilla chest loot tables
-  chests: true
   villagers:
     # Replace monument map offers from villagers
-    monument: true
+    monument: false
     # Replace mansion map offers from villagers
     mansion: false
-
-# Configure messages for the plugin
-messages:
-  # Configure messages relating to the map
-  map:
-    # Configure the lore added to maps that can be used to get the treasure
-    use:
-      - <green>Use to receive treasure!
+    # Replace trial chamber map offers from villagers
+    trial_chamber: true

@@ -19,7 +19,6 @@
  */
 package me.machinemaker.treasuremapsplus.villager;
 
-import java.util.Collections;
 import net.minecraft.SharedConstants;
 import net.minecraft.server.Bootstrap;
 import org.junit.jupiter.api.BeforeAll;
@@ -37,7 +36,7 @@ class VillagerTradeOverrideTest {
 
     @Test
     void testVillagerOverrideReflection() {
-        final VillagerTradeOverride villagerTradeOverride = new VillagerTradeOverride(Collections.emptyList(), true, true);
+        final VillagerTradeOverride villagerTradeOverride = new VillagerTradeOverride(true, true, true);
         assertEquals(/* cartographer */2 + /* experimental cartographers */2, villagerTradeOverride.override());
     }
 }
