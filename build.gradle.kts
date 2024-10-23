@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.paper.run)
     alias(libs.plugins.spotless)
     alias(libs.plugins.shadow)
+    `maven-publish`
 }
 
 group = "me.machinemaker"
@@ -41,6 +42,32 @@ checkstyle {
 spotless {
     java {
         licenseHeaderFile(file("HEADER"))
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "releases"
+            credentials {
+                username = providers.gradleProperty("shardNexusUser").get()
+                password = providers.gradleProperty("shardNexusPassword").get()
+            }
+            url = uri("https://repo.projectshard.dev/repository/releases/")
+        }
+        maven {
+            name = "snapshots"
+            credentials {
+                username = providers.gradleProperty("shardNexusUser").get()
+                password = providers.gradleProperty("shardNexusPassword").get()
+            }
+            url = uri("https://repo.projectshard.dev/repository/snapshots/")
+        }
+    }
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
     }
 }
 

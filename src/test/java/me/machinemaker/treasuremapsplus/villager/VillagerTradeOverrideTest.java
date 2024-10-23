@@ -28,6 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class VillagerTradeOverrideTest {
 
+    private static final int EXPECTED_OVERRIDES = 3;
+
     @BeforeAll
     static void init() {
         SharedConstants.tryDetectVersion();
@@ -37,6 +39,6 @@ class VillagerTradeOverrideTest {
     @Test
     void testVillagerOverrideReflection() {
         final VillagerTradeOverride villagerTradeOverride = new VillagerTradeOverride(true, true, true);
-        assertEquals(/* cartographer */2 + /* experimental cartographers */2, villagerTradeOverride.override());
+        assertEquals(/* cartographer */ EXPECTED_OVERRIDES + /* experimental cartographers */ EXPECTED_OVERRIDES, villagerTradeOverride.override());
     }
 }
