@@ -53,7 +53,7 @@ publishing {
                 username = providers.gradleProperty("shardNexusUser").get()
                 password = providers.gradleProperty("shardNexusPassword").get()
             }
-            url = uri("https://repo.projectshard.dev/repository/releases/")
+            url = uri("https://repo.projectshard.dev/repository/maven-cn-releases/")
         }
         maven {
             name = "snapshots"
@@ -61,7 +61,7 @@ publishing {
                 username = providers.gradleProperty("shardNexusUser").get()
                 password = providers.gradleProperty("shardNexusPassword").get()
             }
-            url = uri("https://repo.projectshard.dev/repository/snapshots/")
+            url = uri("https://repo.projectshard.dev/repository/maven-cn-snapshots/")
         }
     }
     publications {
